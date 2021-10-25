@@ -1,4 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
+import Login from '../page/Login.vue'
 import Header from '../components/Header.vue'
 import HelloWorld from '../components/HelloWorld.vue'
 
@@ -6,6 +7,7 @@ const history = createWebHistory()
 const router = createRouter({
     history,
     routes: [
+        { path: '/login', component: Login },
         { path: '/header', component: Header },
         { path: '/content', component: HelloWorld, meta: { isAuth: true } }
     ]
@@ -14,8 +16,13 @@ const router = createRouter({
 //之前
 router.beforeEach((to, from, next) => {
     //验证页面权限
-    if (to.meta.isAuth && !localStorage.getItem('user')) {
-        router.replace('/')
+    if (to.matched.some(record => record.meta.isAuth) && !localStorage.getItem('user')) {
+        //router.replace('/')
+        next({
+            path: '/login',
+            //将跳转的路由path作为参数，登录成功后跳转到该路由
+            query: { redirect: to.fullPath }
+        })
     } else {
         next()
     }
