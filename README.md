@@ -1,5 +1,5 @@
 
-### vite + vue3.0.4 + typescript
+### vite + vue3 + vue-router4 + typescript
 
 ## Project setup
 ```
@@ -28,4 +28,6 @@ create-vite-app blog
 npm init  vite-app vite
 npm install @vue/cli-service --save-dev
 vue add @vue/typescript
+npm info vue-router versions
+npm i vue-router@4.0.12
 ```
