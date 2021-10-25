@@ -8,7 +8,7 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+npm run dev
 ```
 
 ### Compiles and minifies for production
@@ -16,13 +16,11 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Official website
+See [Official website](https://v3.cn.vuejs.org/)
 
 ```shell
 npm install -g create-vite-app
