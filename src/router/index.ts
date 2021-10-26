@@ -12,6 +12,7 @@ const router = createRouter({
                 redirect: route.query.redirect
             })
         },
+        { path: '/header/:id', component: Header, props: true },
         { path: '/header', component: Header },
         { path: '/content', component: HelloWorld, meta: { isAuth: true } }
     ]

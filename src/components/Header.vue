@@ -8,7 +8,14 @@
 import { ref } from "vue";
 export default {
   name: "Header",
+  props: {
+    id: {
+      type: String,
+      default: "",
+    },
+  },
   setup(props) {
+    console.log("Header---->", props);
     const count = ref(0);
     function click() {
       count.value++;
