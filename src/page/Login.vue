@@ -1,12 +1,14 @@
 <template>
-  <h1>登录</h1>
-  <input type="text" name="" v-model="account" />
-  <br />
-  <br />
-  <input type="password" name="" v-model="password" />
-  <br />
-  <br />
-  <button @click="login">登录</button>
+  <el-card class="box-card">
+    <h1>登录</h1>
+    <el-input type="text" v-model="account" placeholder="用户名" clearable />
+    <br />
+    <br />
+    <el-input type="password" v-model="password" placeholder="密码" clearable />
+    <br />
+    <br />
+    <el-button type="primary" @click="login">登录</el-button>
+  </el-card>
 </template>
 
 <script lang='ts'>

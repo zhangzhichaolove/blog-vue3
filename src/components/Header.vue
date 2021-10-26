@@ -1,7 +1,7 @@
 <template>
   <h1>头部</h1>
   <h5>{{ count }}</h5>
-  <button @click="click">点击</button>
+  <el-button type="primary" @click="click">点击</el-button>
 </template>
 
 <script lang='ts'>
