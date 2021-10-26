@@ -14,6 +14,7 @@
 <script lang='ts'>
 import { useRoute, useRouter } from "vue-router";
 import { ref } from "vue";
+
 export default {
   name: "Login",
   props: {
@@ -22,16 +23,18 @@ export default {
       default: "",
     },
   },
-  setup(props, context) {
+  setup(props: any, context: any) {
     const route = useRoute();
     const router = useRouter();
     let account = ref("");
     let password = ref("");
+
     function login() {
       router.push(props.redirect);
       console.log("---->", account, password);
       console.log("---->", route.query.redirect);
     }
+
     return { account, password, login };
   },
 };

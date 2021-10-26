@@ -5,9 +5,10 @@
 </template>
 
 <script lang='ts'>
-import { ref } from "vue";
-export default {
-  name: "Header",
+import { defineComponent, ref } from "vue";
+
+export default defineComponent({
+  name: "HelloWorld",
   props: {
     id: {
       type: String,
@@ -17,12 +18,14 @@ export default {
   setup(props) {
     console.log("Header---->", props);
     const count = ref(0);
+
     function click() {
       count.value++;
     }
+
     return { count, click };
   },
-};
+});
 </script>
 
 <style>
