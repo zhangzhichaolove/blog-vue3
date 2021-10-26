@@ -7,7 +7,11 @@ const history = createWebHistory()
 const router = createRouter({
     history,
     routes: [
-        { path: '/login', component: Login },
+        {
+            path: '/login', component: Login, props: route => ({
+                redirect: route.query.redirect
+            })
+        },
         { path: '/header', component: Header },
         { path: '/content', component: HelloWorld, meta: { isAuth: true } }
     ]
