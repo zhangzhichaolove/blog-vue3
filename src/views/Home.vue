@@ -14,5 +14,8 @@ export default defineComponent({
   components: {
     HelloWorld,
   },
+  // created(){
+  //   this.$message.warning('商品至少保留一件')
+  // }
 });
 </script>
