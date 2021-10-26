@@ -7,12 +7,6 @@ module.exports = {
         overlay: {
             warning: false,
             errors: false
-        }
-    },
-    devServer: {
-        overlay: {
-            warning: false,
-            errors: false
         },
         // proxy: 'http://localhost:4000',
         proxy: {
