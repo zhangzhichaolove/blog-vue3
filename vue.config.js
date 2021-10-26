@@ -1,8 +1,18 @@
 const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
+const path = require('path')
+
+function resolve(dir) {
+    return path.join(__dirname, dir)
+}
+
 module.exports = {
     lintOnSave: false,
+    chainWebpack: (config) => {
+        config.resolve.alias
+            .set('@/*', resolve('src'))
+    },
     devServer: {
         overlay: {
             warning: false,
