@@ -1,7 +1,6 @@
-const Components = require('unplugin-vue-components/webpack')
-const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
-
 import { ProjectOptions } from '@vue/cli-service'
+import Components from 'unplugin-vue-components/webpack'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 const path = require('path')
 
