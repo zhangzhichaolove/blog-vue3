@@ -1,15 +1,10 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '@/views/Home.vue'
-import Login from '@/views/Login.vue'
-import Header from '@/components/Header.vue'
-import Admin from "@/views/Admin.vue";
-import NotFound from "@/views/NotFound.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
         name: 'Home',
-        component: Home
+        component: () => import('@/views/Home.vue')
     },
     {
         path: '/about',
@@ -20,14 +15,14 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
     },
     {
-        path: '/login', component: Login, props: route => ({
+        path: '/login', component: () => import('@/views/Login.vue'), props: route => ({
             redirect: route.query.redirect
         })
     },
-    { path: '/header/:id', component: Header, props: true },
-    { path: '/header', component: Header },
-    { path: '/admin', component: Admin, meta: { isAuth: true } },
-    { path: '/notFound', component: NotFound, props: route => { return { toPath: route.query.toPath } } }
+    { path: '/header/:id', component: () => import('@/components/Header.vue'), props: true },
+    { path: '/header', component: () => import('@/components/Header.vue') },
+    { path: '/admin', component: () => import('@/views/Admin.vue'), meta: { isAuth: true } },
+    { path: '/notFound', component: () => import('@/views/NotFound.vue'), props: route => { return { toPath: route.query.toPath } } }
 ]
 
 const router = createRouter({

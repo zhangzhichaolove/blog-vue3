@@ -7,5 +7,3 @@ import 'element-plus/theme-chalk/el-message.css';
 import 'element-plus/theme-chalk/el-notification.css';
 
 createApp(App).use(store).use(router).mount('#app')
-
-console.log('当前环境---->', process.env.NODE_ENV);
