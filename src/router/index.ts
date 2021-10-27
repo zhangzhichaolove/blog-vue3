@@ -1,8 +1,9 @@
-import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import Header from '@/components/Header.vue'
 import Admin from "@/views/Admin.vue";
+import NotFound from "@/views/NotFound.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -23,9 +24,10 @@ const routes: Array<RouteRecordRaw> = [
             redirect: route.query.redirect
         })
     },
-    {path: '/header/:id', component: Header, props: true},
-    {path: '/header', component: Header},
-    {path: '/admin', component: Admin, meta: {isAuth: true}}
+    { path: '/header/:id', component: Header, props: true },
+    { path: '/header', component: Header },
+    { path: '/admin', component: Admin, meta: { isAuth: true } },
+    { path: '/notFound', component: NotFound, props: route => { return { toPath: route.query.toPath } } }
 ]
 
 const router = createRouter({
@@ -35,23 +37,28 @@ const router = createRouter({
 
 //之前
 router.beforeEach((to, from, next) => {
-    //验证页面权限
-    if (to.matched.some(record => record.meta.isAuth) && !localStorage.getItem('user')) {
-        //router.replace('/')
-        next({
-            path: '/login',
-            //将跳转的路由path作为参数，登录成功后跳转到该路由
-            query: {redirect: to.fullPath}
-        })
+    if (to.matched.length !== 0) {
+        //验证页面权限
+        if (to.matched.some(record => record.meta.isAuth) && !localStorage.getItem('user')) {
+            //router.replace('/')
+            next({
+                path: '/login',
+                //将跳转的路由path作为参数，登录成功后跳转到该路由
+                query: { redirect: to.fullPath }
+            })
+        } else {
+            next()
+        }
     } else {
-        next()
+        next({
+            path: '/notFound',
+            query: { toPath: to.fullPath }
+        })
     }
-    // console.log('beforeEach--->', to, from, next);
 })
 
 //之后
 router.afterEach(((to, from) => {
-    // console.log('afterEach--->', to, from);
 }))
 
 export default router
