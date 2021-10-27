@@ -1,5 +1,6 @@
 <template>
   <router-view />
+  <el-tag v-if="false" />
 </template>
 
 <style lang="less">

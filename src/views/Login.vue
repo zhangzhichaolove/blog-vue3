@@ -1,4 +1,5 @@
 <template>
+  <el-tag v-loading.fullscreen.lock="fullscreenLoading" />
   <el-card class="box-card">
     <h1>登录</h1>
     <el-input type="text" v-model="account" placeholder="用户名" clearable />
@@ -14,6 +15,7 @@
 <script lang='ts'>
 import { useRoute, useRouter } from "vue-router";
 import { ref } from "vue";
+import { ElLoading } from "element-plus";
 
 export default {
   name: "Login",
@@ -30,7 +32,17 @@ export default {
     let password = ref("");
 
     function login() {
-      router.push(props.redirect);
+      const loading = ElLoading.service({
+        lock: true,
+        text: "加载中",
+        spinner: "el-icon-loading",
+        background: "rgba(0, 0, 0, 0.7)",
+      });
+      setTimeout(() => {
+        loading.close();
+        localStorage.setItem("user", "user");
+        router.push(props.redirect);
+      }, 2000);
       console.log("---->", account, password);
       console.log("---->", route.query.redirect);
     }

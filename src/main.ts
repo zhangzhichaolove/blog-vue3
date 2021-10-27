@@ -6,4 +6,11 @@ import store from './store'
 import 'element-plus/theme-chalk/el-message.css';
 import 'element-plus/theme-chalk/el-notification.css';
 
-createApp(App).use(store).use(router).mount('#app')
+const app = createApp(App)
+
+app.config.globalProperties.$ELEMENT = {
+    size: 'small',
+    zIndex: 3000
+}
+
+app.use(store).use(router).mount('#app')
