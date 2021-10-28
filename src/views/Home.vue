@@ -106,4 +106,7 @@ export default defineComponent({
   justify-content: center;
   width: 60vh;
 }
+.el-backtop {
+  z-index: 3000;
+}
 </style>
