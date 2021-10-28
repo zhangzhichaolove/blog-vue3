@@ -1,5 +1,5 @@
 <template>
-  <el-tag v-loading.fullscreen.lock="fullscreenLoading" />
+  <div v-loading.fullscreen.lock="fullscreenLoading" />
   <el-card class="box-card">
     <h1>登录</h1>
     <el-input type="text" v-model="account" placeholder="用户名" clearable />
