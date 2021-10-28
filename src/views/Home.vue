@@ -1,7 +1,7 @@
 <template>
   <div v-loading.fullscreen.lock="fullscreenLoading" />
   <el-row>
-    <el-col :span="5">
+    <el-col :span="5" hidden-lg-and-down>
       <div class="left">左侧</div>
     </el-col>
     <el-col :span="14">
@@ -12,7 +12,7 @@
         <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
       </div>
     </el-col>
-    <el-col :span="5">
+    <el-col :span="5" hidden-lg-and-down>
       <div class="affix-container right">
         <div class="login">
           <el-affix :offset="50">
