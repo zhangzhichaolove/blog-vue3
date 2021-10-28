@@ -1,6 +1,5 @@
 <template>
   <router-view />
-  <el-backtop :bottom="100"/>
 </template>
 
 <style lang="less">

@@ -40,6 +40,7 @@
       </div>
     </el-col>
   </el-row>
+  <el-backtop :bottom="80" />
 </template>
 
 <script lang="ts">
