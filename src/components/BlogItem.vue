@@ -4,7 +4,6 @@
       <div class="item-container">
         <div class="img-container">
           <img
-            class="post-img"
             src="https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/butterfly-docs-01-cover.png"
             alt="img"
           />
@@ -62,7 +61,7 @@ export default {
   height: auto;
   -webkit-mask-image: -webkit-radial-gradient(#fff, #000);
 }
-.post-img {
+.img-container > img {
   width: 280px;
   height: 100%;
   cursor: pointer;
