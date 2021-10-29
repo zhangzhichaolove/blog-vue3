@@ -1,10 +1,10 @@
 <template>
   <div v-loading.fullscreen.lock="fullscreenLoading" />
   <el-row>
-    <el-col :span="5" hidden-lg-and-down>
+    <el-col :xl="5" :xs="0" :sm="0" :md="0" :lg="0" hidden-lg-and-down>
       <div class="left">左侧</div>
     </el-col>
-    <el-col :span="14">
+    <el-col :lg="18" :xl="14">
       <router-link to="/about">About</router-link>
       <div>
         <img alt="Vue logo" src="../assets/logo.png" />
@@ -12,7 +12,7 @@
         <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
       </div>
     </el-col>
-    <el-col :span="5" hidden-lg-and-down>
+    <el-col :lg="6" :xl="5" :xs="0" :sm="0" hidden-xl-and-down>
       <div class="affix-container right">
         <div class="login">
           <el-affix :offset="50">
