@@ -2,11 +2,13 @@
   <div class="item">
     <el-card class="box-card" shadow="hover" :body-style="{ padding: '0px' }">
       <div class="item-container">
-        <img
-          class="post-img"
-          src="https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/butterfly-docs-01-cover.png"
-          alt="img"
-        />
+        <div class="img-container">
+          <img
+            class="post-img"
+            src="https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/butterfly-docs-01-cover.png"
+            alt="img"
+          />
+        </div>
         <div class="text-container">
           <span class="post-title">Butterfly 安裝文檔(一) 快速開始</span>
           <span class="post-time">发表于：2020-5-28</span>
@@ -55,19 +57,31 @@ export default {
   padding-right: 20px;
   overflow: hidden;
 }
-.post-img {
+.img-container {
   width: 280px;
   height: auto;
+  -webkit-mask-image: -webkit-radial-gradient(#fff, #000);
+}
+.post-img {
+  width: 280px;
+  height: 100%;
   cursor: pointer;
   object-fit: cover;
 }
-.post-img:hover {
+.item-container:hover > div > img {
   width: 280px;
-  height: auto;
+  height: 100%;
   cursor: pointer;
   object-fit: cover;
   transition: all 0.5s ease-out;
   transform: scale(1.2, 1.2);
+}
+.item-container:hover {
+  display: flex;
+  height: 200px;
+  transition: all 0.5s ease-out;
+  transform: scale(1.02, 1.02);
+  /* transform: scale(1.00, 1.00); */
 }
 .post-title {
   font-size: 15px;
