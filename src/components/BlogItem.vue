@@ -59,6 +59,7 @@ export default {
 .img-container {
   width: 280px;
   height: auto;
+  mask-image: -webkit-radial-gradient(#fff, #000);
   -webkit-mask-image: -webkit-radial-gradient(#fff, #000);
 }
 .img-container > img {
