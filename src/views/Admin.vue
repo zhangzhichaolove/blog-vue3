@@ -63,7 +63,9 @@
       </el-menu>
       <!-- </el-aside> -->
       <el-container>
-        <el-main>Main</el-main>
+        <el-main>
+          <BlogEdit />
+        </el-main>
         <el-footer>
           <Footer />
         </el-footer>
@@ -75,9 +77,10 @@
 <script>
 import { ref } from "vue";
 import Footer from "@/components/Footer.vue";
+import BlogEdit from "@/components/BlogEdit.vue";
 export default {
   name: "Admin",
-  components: { Footer },
+  components: { Footer, BlogEdit },
   setup() {
     const isCollapse = ref(true);
     return {
