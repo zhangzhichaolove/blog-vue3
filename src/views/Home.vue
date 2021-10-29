@@ -8,7 +8,14 @@
       <router-link to="/about">About</router-link>
       <div>
         <img alt="Vue logo" src="../assets/logo.png" />
-        <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+        <BlogItem />
+        <BlogItem />
+        <BlogItem />
+        <BlogItem />
+        <BlogItem />
+        <BlogItem />
+        <BlogItem />
+        <BlogItem />
         <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
       </div>
     </el-col>
@@ -55,6 +62,7 @@ export default defineComponent({
   name: "Home",
   components: {
     HelloWorld,
+    BlogItem: () => import("@/components/BlogItem.vue"),
   },
   created() {
     ElMessage({
