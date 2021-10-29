@@ -64,7 +64,9 @@
       <!-- </el-aside> -->
       <el-container>
         <el-main>Main</el-main>
-        <el-footer>Footer</el-footer>
+        <el-footer>
+          <Footer />
+        </el-footer>
       </el-container>
     </el-container>
   </el-container>
@@ -72,8 +74,10 @@
 
 <script>
 import { ref } from "vue";
+import Footer from "@/components/Footer.vue";
 export default {
   name: "Admin",
+  components: { Footer },
   setup() {
     const isCollapse = ref(true);
     return {
@@ -89,12 +93,17 @@ export default {
   padding: 0px;
   min-height: 100%;
 }
-.el-header,
-.el-footer {
+
+.el-header {
   background-color: #b3c0d1;
   color: var(--el-text-color-primary);
   text-align: center;
   line-height: 60px;
+}
+
+.el-footer {
+  background-color: #b3c0d1;
+  height: auto;
 }
 
 .el-main {
