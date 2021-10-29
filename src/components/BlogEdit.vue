@@ -1,5 +1,5 @@
 <template>
-  <v-md-editor v-model="text" height="400px"></v-md-editor>
+  <v-md-editor v-model="text" height="100%"></v-md-editor>
 </template>
 
 <script>
