@@ -3,21 +3,30 @@
     <el-header>Header</el-header>
     <el-container>
       <el-menu
-        :default-active="activeIndex"
-        :default-openeds="['2']"
+        :default-openeds="['1']"
         class="el-menu-vertical"
         :collapse="isCollapse"
+        :default-active="$route.path"
+        @select="handleSelect"
+        router
       >
-        <el-menu-item index="1" @click="isCollapse = !isCollapse">
+        <el-menu-item :index="$route.path" @click="isCollapse = !isCollapse">
           <i v-if="isCollapse" class="el-icon-d-arrow-right"></i>
           <i v-if="!isCollapse" class="el-icon-d-arrow-left"></i>
           <template #title>{{ isCollapse ? "展开" : "收起" }}</template>
         </el-menu-item>
-        <el-menu-item index="2" @click="itemClick">
+        <el-menu-item
+          index="/admin/blogEdit"
+          :route="{ title: '发布文章' }"
+          @click="itemClick"
+        >
           <i class="el-icon-wind-power"></i>
           <template #title>发布文章</template>
         </el-menu-item>
-        <el-menu-item index="3" @click="itemClick">
+        <el-menu-item
+          index="/admin/copyright"
+          @click="itemClick"
+        >
           <i class="el-icon-menu"></i>
           <template #title>打开版权</template>
         </el-menu-item>
@@ -42,11 +51,15 @@
           >
             <el-tab-pane
               v-for="item in tabs"
-              :key="item.name"
+              :key="item.path"
               :label="item.title"
-              :name="item.name"
+              :name="item.path"
             >
-              <component :is="item.component"></component>
+              <router-view v-slot="{ Component }">
+                <transition name="fade-transform" mode="out-in">
+                  <component class="view" :is="Component"></component>
+                </transition>
+              </router-view>
             </el-tab-pane>
           </el-tabs>
         </el-main>
@@ -60,71 +73,65 @@
 
 <script>
 import { ref, reactive, toRefs } from "vue";
+import { useRoute, useRouter } from "vue-router";
 export default {
   name: "Admin",
   components: {
     Footer: () => import("@/components/Footer.vue"),
     BlogEdit: () => import("@/components/BlogEdit.vue"),
   },
+  created() {
+    // const router = useRouter();
+    // router.push("/admin/blogEdit");
+  },
   setup() {
+    const router = useRouter();
+
     const isCollapse = ref(true);
 
+    const currentRoute = router.currentRoute.value;
+    const currentPath = currentRoute.path;
+    const currentMeta = currentRoute.meta;
+
     let editableTabs = reactive({
-      activeIndex: "2",
-      editableTabsValue: "publish",
-      tabs: [
-        {
-          title: "发布文章",
-          name: "publish",
-          component: <BlogEdit />,
-        },
-      ],
+      editableTabsValue: currentPath,
+      tabs: [],
     });
-    function itemClick(menu) {
-      let pushItem = undefined;
-      if (menu.index === "2") {
-        pushItem = {
-          title: "发布文章",
-          name: "publish",
-          component: <BlogEdit />,
-        };
-      } else if (menu.index === "3") {
-        pushItem = {
-          title: "打开版权",
-          name: "copyright",
-          component: <Footer />,
-        };
+
+    currentPath !== "/admin" &&
+      editableTabs.tabs.push({
+        title: currentMeta.title,
+        path: currentPath,
+      });
+
+    function handleSelect(key, keyPath, routeProps) {
+      if (key === "/admin") {
+        return;
+      } else if (editableTabs.tabs.filter((it) => it.path === key).length > 0) {
+        editableTabs.editableTabsValue = key;
+        return;
       }
-      if (
-        pushItem &&
-        editableTabs.tabs.filter((item) => item.name === pushItem.name) <= 0
-      ) {
-        editableTabs.editableTabsValue = pushItem.name;
-        editableTabs.tabs.push(pushItem);
-        editableTabs.activeIndex = menu.index;
-      }
-      if (pushItem) {
-        editableTabs.editableTabsValue = pushItem.name;
-      }
+      const title = router.getRoutes().filter((it) => it.path === key)[0]
+        .meta.title;
+      editableTabs.tabs.push({
+        title: title,
+        path: key,
+      });
+      router.replace(key);
+      editableTabs.editableTabsValue = key;
+    }
+
+    function itemClick(itemTab) {
+      router.replace(itemTab.index);
     }
     function tatabClick(itemTab) {
-      editableTabs.activeIndex = "1";
+      router.replace(itemTab.props.name);
     }
-    function removeTab(itemTab) {
-      editableTabs.activeIndex = "1";
-      let tmpItem = editableTabs.tabs.filter((item) => item.name === itemTab);
-      let index = editableTabs.tabs.indexOf(tmpItem[0]);
-      editableTabs.tabs.splice(index, 1);
-      if (editableTabs.editableTabsValue === itemTab) {
-        index === 0 && index++;
-        if (editableTabs.tabs.length > 0) {
-          editableTabs.editableTabsValue = editableTabs.tabs[index - 1].name;
-        }
-      }
-    }
+    function removeTab(itemTab) {}
     return {
       isCollapse,
       ...toRefs(editableTabs),
+      handleSelect,
       itemClick,
       tatabClick,
       removeTab,

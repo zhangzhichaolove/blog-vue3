@@ -23,7 +23,23 @@ const routes: Array<RouteRecordRaw> = [
     },
     { path: '/header/:id', component: () => import('@/components/Header.vue'), props: true },
     { path: '/header', component: () => import('@/components/Header.vue') },
-    { path: '/admin', component: () => import('@/views/Admin.vue'), meta: { isAuth: true } },
+    {
+        path: '/admin', component: () => import('@/views/Admin.vue'), meta: { isAuth: true },
+        children: [
+            {
+                path: '/admin/blogEdit',
+                name: 'BlogEdit',
+                meta: { title: '发布文章' },
+                component: () => import('@/components/BlogEdit.vue')
+            },
+            {
+                path: '/admin/copyright',
+                name: 'Footer',
+                meta: { title: '打开版权' },
+                component: () => import('@/components/Footer.vue')
+            }
+        ]
+    },
     { path: '/notFound', component: () => import('@/views/NotFound.vue'), props: route => { return { toPath: route.query.toPath } } }
 ]
 
