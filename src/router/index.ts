@@ -24,8 +24,13 @@ const routes: Array<RouteRecordRaw> = [
     { path: '/header/:id', component: () => import('@/components/Header.vue'), props: true },
     { path: '/header', component: () => import('@/components/Header.vue') },
     {
-        path: '/admin', component: () => import('@/views/Admin.vue'), meta: { isAuth: true },
+        path: '/admin', component: () => import('@/views/Admin.vue'), meta: { isAuth: true, title: '后台管理' },
         children: [
+            {
+                path: '/admin/guide',
+                name: 'Guide',
+                component: () => import('@/components/Guide.vue')
+            },
             {
                 path: '/admin/blogEdit',
                 name: 'BlogEdit',

@@ -23,13 +23,13 @@
           <i class="el-icon-menu"></i>
           <template #title>打开版权</template>
         </el-menu-item>
-        <el-menu-item index="4" @click="itemClick" disabled>
-          <i class="el-icon-document"></i>
-          <template #title>菜单四</template>
-        </el-menu-item>
-        <el-menu-item index="5" @click="itemClick">
+        <el-menu-item index="/admin/setting" @click="itemClick">
           <i class="el-icon-setting"></i>
-          <template #title>菜单五</template>
+          <template #title>系统设置</template>
+        </el-menu-item>
+        <el-menu-item index="/admin/about" @click="itemClick" disabled>
+          <i class="el-icon-document"></i>
+          <template #title>关于我们</template>
         </el-menu-item>
       </el-menu>
       <!-- </el-aside> -->
@@ -75,15 +75,19 @@ export default {
     Footer: () => import("@/components/Footer.vue"),
     BlogEdit: () => import("@/components/BlogEdit.vue"),
   },
+  created() {
+    const router = useRouter();
+    router.push("/admin/guide");
+  },
   setup() {
     const router = useRouter();
 
     const isCollapse = ref(true);
 
     const currentRoute = router.currentRoute.value;
-    const currentPath = currentRoute.path;
     const currentMeta = currentRoute.meta;
-
+    let currentPath = currentRoute.path;
+    currentPath = currentPath === "/admin" ? "/admin/guide" : currentPath;
     let editableTabs = reactive({
       editableTabsValue: currentPath,
       tabs: [],
