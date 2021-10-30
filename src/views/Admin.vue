@@ -15,18 +15,11 @@
           <i v-if="!isCollapse" class="el-icon-d-arrow-left"></i>
           <template #title>{{ isCollapse ? "展开" : "收起" }}</template>
         </el-menu-item>
-        <el-menu-item
-          index="/admin/blogEdit"
-          :route="{ title: '发布文章' }"
-          @click="itemClick"
-        >
+        <el-menu-item index="/admin/blogEdit" @click="itemClick">
           <i class="el-icon-wind-power"></i>
           <template #title>发布文章</template>
         </el-menu-item>
-        <el-menu-item
-          index="/admin/copyright"
-          @click="itemClick"
-        >
+        <el-menu-item index="/admin/copyright" @click="itemClick">
           <i class="el-icon-menu"></i>
           <template #title>打开版权</template>
         </el-menu-item>
@@ -73,16 +66,12 @@
 
 <script>
 import { ref, reactive, toRefs } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 export default {
   name: "Admin",
   components: {
     Footer: () => import("@/components/Footer.vue"),
     BlogEdit: () => import("@/components/BlogEdit.vue"),
-  },
-  created() {
-    // const router = useRouter();
-    // router.push("/admin/blogEdit");
   },
   setup() {
     const router = useRouter();
