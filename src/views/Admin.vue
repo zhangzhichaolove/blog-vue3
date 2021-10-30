@@ -116,7 +116,16 @@ export default {
     function tatabClick(itemTab) {
       router.replace(itemTab.props.name);
     }
-    function removeTab(itemTab) {}
+    function removeTab(itemTab) {
+      editableTabs.tabs = editableTabs.tabs.filter((it) => it.path !== itemTab);
+      if (editableTabs.tabs.length > 0) {
+        const nextPath = editableTabs.tabs[0].path;
+        router.push(nextPath);
+        editableTabs.editableTabsValue = nextPath;
+      } else {
+        router.replace("/admin");
+      }
+    }
     return {
       isCollapse,
       ...toRefs(editableTabs),
