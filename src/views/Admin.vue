@@ -113,9 +113,11 @@ export default {
     function itemClick(itemTab) {
       router.replace(itemTab.index);
     }
+
     function tatabClick(itemTab) {
       router.replace(itemTab.props.name);
     }
+
     function removeTab(itemTab) {
       editableTabs.tabs = editableTabs.tabs.filter((it) => it.path !== itemTab);
       if (editableTabs.tabs.length > 0) {
