@@ -50,7 +50,9 @@
             >
               <router-view v-slot="{ Component }">
                 <transition name="fade-transform" mode="out-in">
-                  <component class="view" :is="Component"></component>
+                  <keep-alive>
+                    <component class="view" :is="Component"></component>
+                  </keep-alive>
                 </transition>
               </router-view>
             </el-tab-pane>

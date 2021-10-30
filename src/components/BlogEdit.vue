@@ -15,6 +15,8 @@ export default {
       title: ref(""),
     };
   },
+  activated() {},
+  deactivated() {},
 };
 </script>
 
