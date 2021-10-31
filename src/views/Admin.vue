@@ -77,7 +77,8 @@ export default {
   },
   created() {
     const router = useRouter();
-    router.replace("/admin/guide");
+    let currentPath = router.currentRoute.value.path;
+    currentPath === "/admin" && router.replace("/admin/guide");
   },
   setup() {
     const router = useRouter();
