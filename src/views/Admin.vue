@@ -77,7 +77,7 @@ export default {
   },
   created() {
     const router = useRouter();
-    router.push("/admin/guide");
+    router.replace("/admin/guide");
   },
   setup() {
     const router = useRouter();
@@ -128,7 +128,7 @@ export default {
       editableTabs.tabs = editableTabs.tabs.filter((it) => it.path !== itemTab);
       if (editableTabs.tabs.length > 0) {
         const nextPath = editableTabs.tabs[0].path;
-        router.push(nextPath);
+        router.replace(nextPath);
         editableTabs.editableTabsValue = nextPath;
       } else {
         router.replace("/admin");
