@@ -68,37 +68,30 @@
 
 <script>
 import { ref, reactive, toRefs } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 export default {
   name: "Admin",
   components: {
     Footer: () => import("@/components/Footer.vue"),
     BlogEdit: () => import("@/components/BlogEdit.vue"),
   },
-  created() {
-    const router = useRouter();
-    let currentPath = router.currentRoute.value.path;
-    currentPath === "/admin" && router.replace("/admin/guide");
-  },
   setup() {
+    const route = useRoute();
     const router = useRouter();
 
     const isCollapse = ref(true);
 
-    const currentRoute = router.currentRoute.value;
-    const currentMeta = currentRoute.meta;
-    let currentPath = currentRoute.path;
-    currentPath = currentPath === "/admin" ? "/admin/guide" : currentPath;
+    const currentTitle = route.meta.title;
+    const currentPath = route.path === "/admin" ? "/admin/guide" : route.path;
     let editableTabs = reactive({
       editableTabsValue: currentPath,
       tabs: [],
     });
-
-    currentPath !== "/admin" &&
-      editableTabs.tabs.push({
-        title: currentMeta.title,
-        path: currentPath,
-      });
+    router.replace(currentPath);
+    editableTabs.tabs.push({
+      title: currentTitle,
+      path: currentPath,
+    });
 
     function handleSelect(key, keyPath, routeProps) {
       if (key === "/admin") {
