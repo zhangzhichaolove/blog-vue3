@@ -38,7 +38,6 @@ export default {
       preview,
       navRef,
       text,
-      setPreview,
     };
   },
 };
