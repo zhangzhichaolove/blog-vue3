@@ -7,9 +7,12 @@
 
 <script>
 import { ref } from "vue";
+import { useRoute } from "vue-router";
 export default {
   name: "BlogEdit",
   setup(props) {
+    const route = useRoute();
+    console.log("文章ID--->", route.query.blogId);
     return {
       text: ref(""),
       title: ref(""),

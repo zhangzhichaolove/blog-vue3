@@ -89,11 +89,11 @@ export default {
     }
     const router = useRouter();
     function blogEditClick() {
-      router.push("/admin/blogEdit");
+      router.push({ path: "/admin/blogEdit", query: { blogId: 1 } });
     }
     function blogDeleteClick() {}
     function blogDetailsClick() {
-      router.push("/blog");
+      router.push({ path: "/blog", query: { blogId: 1 } });
     }
     return {
       tableData,

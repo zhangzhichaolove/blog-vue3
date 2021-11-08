@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import { ref, reactive, onMounted, toRefs } from "vue";
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 export default {
   name: "BlogPreview",
   components: {
@@ -21,6 +22,8 @@ export default {
   },
   mounted() {},
   setup(props) {
+    const route = useRoute();
+    console.log("文章ID--->", route.query.blogId);
     const preview = ref(null);
     const navRef = ref(null);
     const text =
