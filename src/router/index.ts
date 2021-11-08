@@ -38,6 +38,12 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/components/BlogEdit.vue')
             },
             {
+                path: '/admin/blogList',
+                name: 'BlogList',
+                meta: { title: '文章列表' },
+                component: () => import('@/components/BlogList.vue')
+            },
+            {
                 path: '/admin/copyright',
                 name: 'Footer',
                 meta: { title: '打开版权' },

@@ -19,6 +19,10 @@
           <i class="el-icon-wind-power"></i>
           <template #title>发布文章</template>
         </el-menu-item>
+        <el-menu-item index="/admin/blogList" @click="itemClick">
+          <i class="el-icon-finished"></i>
+          <template #title>文章列表</template>
+        </el-menu-item>
         <el-menu-item index="/admin/copyright" @click="itemClick">
           <i class="el-icon-menu"></i>
           <template #title>打开版权</template>
@@ -73,7 +77,6 @@ export default {
   name: "Admin",
   components: {
     Footer: () => import("@/components/Footer.vue"),
-    BlogEdit: () => import("@/components/BlogEdit.vue"),
   },
   setup() {
     const route = useRoute();
