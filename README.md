@@ -1,32 +1,39 @@
-# blog-vue3
+# 博客系统-开发中
 
-###  vue3 + vue-router + vuex + typescript + element-plus + less
+### 项目架构 vue3 + vue-router + vuex + typescript + element-plus 
 
-## Project setup
+### 运行项目
+#### 安装依赖
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+#### 运行服务
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 编译项目
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### 错误检查
 ```
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 配置参考
+查看 [配置参考](https://cli.vuejs.org/config/).
 
-### Official website
-See [Official website](https://v3.cn.vuejs.org/)
+### Vue官网
+查看 [Vue官网](https://v3.cn.vuejs.org/)
+
+# 欢迎大家一起完善。
+### QQ群1:56821781
+### QQ群2:632512781
+
+### 其他
 
 ```shell
 npm install -g create-vite-app
